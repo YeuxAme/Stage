@@ -13,9 +13,9 @@ public class StudentsLoader {
 	@Bean
 	public CommandLineRunner initDatabaseStudent(StudentRepository studentRepository) {
 		return args -> {
-			studentRepository.save(new Student(1, "Lorenzo", "Merlino", "aaabbbccc", "123456a"));
-			studentRepository.save(new Student(2, "Gabriele", "Quarini", "dddeeefff", "123456b"));
-			studentRepository.save(new Student(3, "Alek", "Pampolina", "habibi", "123456c"));
+			studentRepository.save(new Student(1, "Lorenzo", "Merlino", "aaabbbccc", 100));
+			studentRepository.save(new Student(2, "Gabriele", "Quarini", "dddeeefff", 150));
+			studentRepository.save(new Student(3, "Alek", "Pampolina", "habibi", 200));
 
 		};	
 	}

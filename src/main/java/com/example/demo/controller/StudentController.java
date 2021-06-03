@@ -16,41 +16,47 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
+import com.example.demo.service.StudentService;
 
 @RestController
 public class StudentController {
 
 	@Autowired
-	private StudentRepository studentRepository;
+	private StudentService studentService;
 	
 	@GetMapping("/students/{id}")
 	public Optional<Student> getStudent(@PathVariable int id) {
-		return studentRepository.findById(id);
+		return studentService.findById(id);
 		//return new Student(1, "Lorenzo", "Merlino", "aaabbbccc", "123456");
 	}
 	
 	@GetMapping("/students/all")
 	public List<Student> getAllStudents() {
-		return studentRepository.findAll();
+		return studentService.findAll();
 	}
 	
 	@PostMapping("/students/save")
 	public Student insertStudent(@RequestBody Student student) {
-		return studentRepository.save(student);
+		return studentService.save(student);
 	}
 	
 	@PutMapping ("/students/{id}/update")
 	public Student updateStudent(@PathVariable int id, @RequestBody Student student) {
-		Optional<Student> stud = studentRepository.findById(id);
+		Optional<Student> stud = studentService.findById(id);
 		if(stud.isEmpty()) {
 			throw new RuntimeException("Invalid id");
 		}
-		return studentRepository.save(student);
+		return studentService.save(student);
 	}
 	
 	@DeleteMapping ("/students/{id}/delete")
 	public void deleteStudent(@PathVariable int id) {
-		studentRepository.deleteById(id);
+		studentService.deleteById(id);
+	}
+	
+	@GetMapping("/students/mat/{mat}")
+	public List<Student> getStudentByMat(@PathVariable int mat){	
+		return studentService.findStudentsByMat(mat);
 	}
 	
 	
