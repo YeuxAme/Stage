@@ -24,24 +24,24 @@ public class ClassroomController {
 	@Autowired
 	private ClassroomService classroomService;
 	
-	@GetMapping ("/Classrooms/{id}")
+	@GetMapping ("/classrooms/{id}")
 	public Optional<Classroom> getClassroom(int id) {
 		return classroomService.findById(id);
 		//return new Classroom(1, 4, "Info-B");
 	}
 	
-	@GetMapping ("/Classrooms/all")
+	@GetMapping ("/classrooms/all")
 	public List<Classroom> getAllClassrooms(){
 		return classroomService.findAll();
 		
 	}
 	
-	@PostMapping ("/Classrooms/save")
+	@PostMapping ("/classrooms/save")
 	public Classroom insertClassroom(@RequestBody Classroom classroom) {
 		return classroomService.save(classroom);
 	}
 	
-	@PutMapping ("/Classrooms/{id}/update")
+	@PutMapping ("/classrooms/{id}/update")
 	public Classroom updateClassroom(@PathVariable int id, @RequestBody Classroom classroom) {
 		Optional<Classroom> cr = classroomService.findById(id);
 		if(cr.isEmpty()) {
@@ -50,12 +50,12 @@ public class ClassroomController {
 		return classroomService.save(classroom);
 	}
 	
-	@DeleteMapping ("/Classrooms/{id}/delete")
+	@DeleteMapping ("/classrooms/{id}/delete")
 	public void deleteClassroom(@PathVariable int id) {
 		classroomService.deleteById(id);
 	}
 	
-	@GetMapping ("Classrooms/class/{cl}")
+	@GetMapping ("/classrooms/class/{cl}")
 	public List<Classroom> getClassroomByClass(@PathVariable int cl){
 		return classroomService.findClassroomByClass(cl);
 	}
