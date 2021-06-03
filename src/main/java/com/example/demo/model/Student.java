@@ -10,12 +10,12 @@ public class Student {
 	private String nome;
 	private String cognome;
 	private String codice_fiscale;
-	private String matricola;
+	private int matricola;
 	
 	public Student() {
 		
 	}
-	public Student(int id, String nome, String cognome, String codice_fiscale, String matricola) {
+	public Student(int id, String nome, String cognome, String codice_fiscale, int matricola) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -54,11 +54,11 @@ public class Student {
 		this.codice_fiscale = codice_fiscale;
 	}
 	
-	public String getMatricola() {
+	public int getMatricola() {
 		return matricola;
 	}
 	
-	public void setMatricola(String matricola) {
+	public void setMatricola(int matricola) {
 		this.matricola = matricola;
 	}
 	
