@@ -16,42 +16,48 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Classroom;
 import com.example.demo.model.Student;
 import com.example.demo.repository.ClassroomRepository;
+import com.example.demo.service.ClassroomService;
 
 @RestController
 public class ClassroomController {
 
 	@Autowired
-	private ClassroomRepository classroomRepository;
+	private ClassroomService classroomService;
 	
 	@GetMapping ("/Classrooms/{id}")
 	public Optional<Classroom> getClassroom(int id) {
-		return classroomRepository.findById(id);
+		return classroomService.findById(id);
 		//return new Classroom(1, 4, "Info-B");
 	}
 	
 	@GetMapping ("/Classrooms/all")
 	public List<Classroom> getAllClassrooms(){
-		return classroomRepository.findAll();
+		return classroomService.findAll();
 		
 	}
 	
 	@PostMapping ("/Classrooms/save")
 	public Classroom insertClassroom(@RequestBody Classroom classroom) {
-		return classroomRepository.save(classroom);
+		return classroomService.save(classroom);
 	}
 	
 	@PutMapping ("/Classrooms/{id}/update")
 	public Classroom updateClassroom(@PathVariable int id, @RequestBody Classroom classroom) {
-		Optional<Classroom> cr = classroomRepository.findById(id);
+		Optional<Classroom> cr = classroomService.findById(id);
 		if(cr.isEmpty()) {
 			throw new RuntimeException("Invalid id");
 		}
-		return classroomRepository.save(classroom);
+		return classroomService.save(classroom);
 	}
 	
 	@DeleteMapping ("/Classrooms/{id}/delete")
 	public void deleteClassroom(@PathVariable int id) {
-		classroomRepository.deleteById(id);
+		classroomService.deleteById(id);
+	}
+	
+	@GetMapping ("Classrooms/class/{cl}")
+	public List<Classroom> getClassroomByClass(@PathVariable int cl){
+		return classroomService.findClassroomByClass(cl);
 	}
 	
 }
